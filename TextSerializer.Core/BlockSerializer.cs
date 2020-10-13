@@ -9,7 +9,7 @@ namespace TextSerializer
         public string FieldSeparator { get; set; }
         public bool LastFieldHasSeparator { get; set; }
 
-        public void Serialize<T>(T Object, StreamWriter stream) where T : new()
+        public void Serialize<T>(T Object, TextWriter stream) where T : new()
         {
             var data = ObjectInspector.ReadObject(Object);
 
@@ -31,7 +31,7 @@ namespace TextSerializer
             stream.Flush();
         }
 
-        public T Deserialize<T>(StreamReader stream, out SerializationResult Results) where T : new()
+        public T Deserialize<T>(TextReader stream, out SerializationResult Results) where T : new()
         {
             T Object = new T();
             Results = new SerializationResult();
