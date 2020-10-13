@@ -32,7 +32,7 @@ namespace TextSerializer.Formatters
         }
 
         public abstract string Serialize(SerializableValue Value);
-        //public abstract int RequiredTextSize(SerializableValue Value);
-        public abstract bool Deserialize(string Line, int Offset, SerializableValue Value);
+        //public abstract bool Deserialize(string Line, int Offset, SerializableValue Value);
+        public abstract bool Deserialize(string Block, SerializableValue Value);
     }
 }

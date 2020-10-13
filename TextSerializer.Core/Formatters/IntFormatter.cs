@@ -12,10 +12,9 @@ namespace TextSerializer.Formatters
             if (sVal.Length > Value.Length) throw new InvalidOperationException();
             return sVal;
         }
-        override public bool Deserialize(string Line, int Offset, SerializableValue Value)
+        override public bool Deserialize(string Block, SerializableValue Value)
         {
-            string part = Line.Substring(Offset, Value.Length);
-            Value.Object = Convert.ToInt32(part);
+            Value.Object = Convert.ToInt32(Block);
             return true;
         }
     }

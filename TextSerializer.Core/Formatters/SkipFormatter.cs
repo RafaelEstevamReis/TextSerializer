@@ -8,7 +8,7 @@ namespace TextSerializer.Formatters
         {
             throw new InvalidOperationException("Cannot serialize a property marked with SkipAttribute ");
         }
-        override public bool Deserialize(string Line, int Offset, SerializableValue Value)
+        override public bool Deserialize(string Block, SerializableValue Value)
         {
             return true;
         }

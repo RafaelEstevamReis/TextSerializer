@@ -15,10 +15,9 @@
             // smaller, pad
             return sVal.PadRight(Value.Length);
         }
-        override public bool Deserialize(string Line, int Offset, SerializableValue Value)
+        override public bool Deserialize(string Block, SerializableValue Value)
         {
-            string part = Line.Substring(Offset, Value.Length);
-            Value.Object = part.TrimEnd();
+            Value.Object = Block.TrimEnd();
             return true;
         }
     }

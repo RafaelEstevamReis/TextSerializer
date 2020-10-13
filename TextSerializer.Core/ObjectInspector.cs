@@ -9,7 +9,7 @@ namespace TextSerializer
 {
     public class ObjectInspector
     {
-        public static SerializableValue[] ReadObject(object Object)
+        public static SerializableValue[] ReadObject<T>(T Object) where T : new()
         {
             var myType = Object.GetType();
             IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());

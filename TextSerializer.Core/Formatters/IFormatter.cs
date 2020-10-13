@@ -3,6 +3,7 @@
     public interface IFormatter
     {
         string Serialize(SerializableValue Value);
-        bool Deserialize(string Line, int Offset, SerializableValue Value);
+        //bool Deserialize(string Line, int Offset, SerializableValue Value);
+        bool Deserialize(string Block, SerializableValue Value);
     }
 }

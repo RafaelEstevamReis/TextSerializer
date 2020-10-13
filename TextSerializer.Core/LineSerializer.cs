@@ -8,13 +8,8 @@ namespace TextSerializer
     {
         public static void Serialize(object Object, StreamWriter stream)
         {
-            var data = ObjectInspector.ReadObject(Object);
-            foreach (var val in data)
-            {
-                string value = val.Formatter.Serialize(val);
-                if (value.Length != val.Length) throw new InvalidOperationException("Serialized Length mismatch");
-                stream.Write(value);
-            }
+            BlockSerializer bs = new BlockSerializer();
+            bs.Serialize(Object, stream);
             stream.WriteLine();
             stream.Flush();
         }
@@ -41,7 +36,8 @@ namespace TextSerializer
             {
                 try
                 {
-                    if (val.Formatter.Deserialize(line, offset, val))
+                    string block = line.Substring(offset, val.Length);
+                    if (val.Formatter.Deserialize(block, val))
                     {
                         Object.GetType().GetProperty(val.Name).SetValue(Object, val.Object);
                     }

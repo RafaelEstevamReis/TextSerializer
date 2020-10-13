@@ -17,10 +17,9 @@ namespace TextSerializer.Formatters
 
             return sVal;
         }
-        override public bool Deserialize(string Line, int Offset, SerializableValue Value)
+        override public bool Deserialize(string Block, SerializableValue Value)
         {
-            string part = Line.Substring(Offset, Value.Length);
-            decimal dVal = Convert.ToDecimal(part);
+            decimal dVal = Convert.ToDecimal(Block);
 
             int Div = (int)Math.Pow(10, Value.Decimals);
             Value.Object = dVal / Div;
