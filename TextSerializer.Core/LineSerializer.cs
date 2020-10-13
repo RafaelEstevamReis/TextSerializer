@@ -6,21 +6,23 @@ namespace TextSerializer
 {
     public class LineSerializer
     {
-        public static void Serialize(object Object, StreamWriter stream)
+        public void Serialize<T>(T Object, StreamWriter stream) where T : new()
         {
             BlockSerializer bs = new BlockSerializer();
             bs.Serialize(Object, stream);
             stream.WriteLine();
             stream.Flush();
         }
-        public static SerializationResult Deserialize(object Object, StreamReader stream)
+        public T Deserialize<T>(StreamReader stream, out SerializationResult Results) where T : new()
         {
             var line = stream.ReadLine();
-            return Deserialize(Object, line);
+            return Deserialize<T>(line, out Results);
         }
-        public static SerializationResult Deserialize(object Object, string line)
+        //public static SerializationResult Deserialize(object Object, string line)
+        public T Deserialize<T>(string line, out SerializationResult Results) where T : new()
         {
-            var serResult = new SerializationResult();
+            T Object = new T();
+            Results = new SerializationResult();
             var data = ObjectInspector.ReadObject(Object);
 
             for (int idx = data.Min(o => o.Index); idx <= data.Max(o => o.Index); idx++)
@@ -43,16 +45,16 @@ namespace TextSerializer
                     }
                     else
                     {
-                        serResult.Errors.Add(new Exception("Failed to deserialize field " + val.Name));
+                        Results.Errors.Add(new Exception("Failed to deserialize field " + val.Name));
                     }
                 }
                 catch (Exception ex)
                 {
-                    serResult.Errors.Add(new Exception("Error serializing field " + val.Name, ex));
+                    Results.Errors.Add(new Exception("Error serializing field " + val.Name, ex));
                 }
                 offset += val.Length;
             }
-            return serResult;
+            return Object;
         }
     }
 }
