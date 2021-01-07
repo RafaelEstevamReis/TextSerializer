@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/RafaelEstevamReis/TextSerializer</PackageProjectUrl>
     <RepositoryUrl>https://github.com/RafaelEstevamReis/TextSerializer</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Paired with 
+    <PackageReleaseNotes>Paired with 29b6e05
 https://github.com/RafaelEstevamReis/TextSerializer</PackageReleaseNotes>
     <Version>0.4.6</Version>
   </PropertyGroup>
