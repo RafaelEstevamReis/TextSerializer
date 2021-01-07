@@ -48,7 +48,19 @@ namespace TextSerializer
                 });
             }
 
-            return dicProps.OrderBy(x => x.Key).Select(x => x.Value).ToArray();
+            var result = dicProps.OrderBy(x => x.Key).Select(x => x.Value).ToArray();
+
+            var regSize = GetRegistrySizeAttribute<T>();
+            if (regSize != null)
+            {
+                var itemsSize = result.Sum(o => o.Length);
+                if (itemsSize != regSize.Length)
+                {
+                    throw new InvalidOperationException($"Registry with total Length mismatch. Sum of properties' len: {itemsSize} Expected: {regSize.Length}");
+                }
+            }
+
+            return result;
         }
         private static T checkProperty<T>(Type myType, PropertyInfo prop)
         {
@@ -60,5 +72,11 @@ namespace TextSerializer
             return p;
         }
 
+        public static RegistrySizeAttribute GetRegistrySizeAttribute<T>()
+        {
+            var typeT = typeof(T);
+            var att = typeT.GetCustomAttribute(typeof(RegistrySizeAttribute));
+            return att as RegistrySizeAttribute;
+        }
     }
 }
