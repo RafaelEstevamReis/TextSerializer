@@ -38,8 +38,12 @@ namespace TextSerializer.Test
             line.Serialize(example, sw);
 
             var text = Encoding.UTF8.GetString(ms.ToArray());
-
+            
             Console.WriteLine(text);
+
+
+            // Convert back
+            var example2 = line.Deserialize<Example>(text.Replace("\r\n", ""), out _);
 
         }
     }

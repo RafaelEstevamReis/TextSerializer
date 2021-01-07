@@ -2,6 +2,9 @@
 
 namespace TextSerializer.Attributes
 {
+    /// <summary>
+    /// Optional Attribute. Allows class-wide length check
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class RegistrySizeAttribute : Attribute
     {

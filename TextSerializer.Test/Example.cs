@@ -3,6 +3,7 @@ using TextSerializer.Attributes;
 
 namespace TextSerializer.Test
 {
+    [RegistrySize(200)] // Optional
     public class Example
     {
         [Index(1), Type(DataType.N), Length(1)]
@@ -14,7 +15,7 @@ namespace TextSerializer.Test
         [Index(3), Type(DataType.C), Length(7)]
         public string OperationName { get; set; }
 
-        [Index(4), Type(DataType.N), Length(1)]
+        [Index(4), Type(DataType.N), Length(2)]
         public int ServiceCode { get; set; }
 
         [Index(5), Type(DataType.C), Length(15)]
