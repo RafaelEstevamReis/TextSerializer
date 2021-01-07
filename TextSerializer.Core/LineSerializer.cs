@@ -38,6 +38,15 @@ namespace TextSerializer
                 bs.ObjectReadComplete += ObjectReadComplete;
             }
 
+            var regSize = ObjectInspector.GetRegistrySizeAttribute<T>();
+            if (regSize != null)
+            {
+                if (line.Length != regSize.Length)
+                {
+                    throw new InvalidOperationException($"Deserialization cancelled due to Length mismatch. Line-Lenght: {line.Length} Expected: {regSize.Length}");
+                }
+            }
+
             return bs.Deserialize<T>(new StringReader(line), out Results);
         }
     }

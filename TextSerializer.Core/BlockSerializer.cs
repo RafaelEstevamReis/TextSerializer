@@ -20,6 +20,8 @@ namespace TextSerializer
 
         public void Serialize<T>(T Object, TextWriter stream) where T : new()
         {
+            int totalWritten = 0;
+
             var data = ObjectInspector.ReadObject(Object, Options);
 
             ObjectReadComplete?.Invoke(this, data);
@@ -30,6 +32,7 @@ namespace TextSerializer
                 string value = val.Formatter.Serialize(val);
                 if (value.Length != val.Length) throw new InvalidOperationException($"Serialized Length mismatch on {val.Name}. Expected {val.Length} but '{value}' has {value.Length}");
                 stream.Write(value);
+                totalWritten += value.Length;
 
                 bool checkSeparator = !string.IsNullOrEmpty(FieldSeparator);
                 if (!LastFieldHadSeparator && i == data.Length - 1) checkSeparator = false;
@@ -37,9 +40,19 @@ namespace TextSerializer
                 if (checkSeparator)
                 {
                     stream.Write(FieldSeparator);
+                    totalWritten += FieldSeparator.Length;
                 }
             }
             stream.Flush();
+
+            var regSize = ObjectInspector.GetRegistrySizeAttribute<T>();
+            if (regSize != null)
+            {
+                if (totalWritten != regSize.Length)
+                {
+                    throw new InvalidOperationException($"Serialization completed with total Length mismatch. Written: {totalWritten} Expected: {regSize.Length}");
+                }
+            }
         }
 
         public T Deserialize<T>(TextReader stream, out SerializationResult Results) where T : new()
