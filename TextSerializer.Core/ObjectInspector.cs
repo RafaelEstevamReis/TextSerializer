@@ -53,7 +53,7 @@ namespace TextSerializer
             var p = prop.GetCustomAttributes(typeof(T), true).Cast<T>().FirstOrDefault();
             if (p == null)
             {
-                throw new InvalidOperationException("Public property must be marked with " + typeof(T).Name + " or IgnoreAttribute. " + myType.Name + "." + prop.Name);
+                throw new InvalidOperationException("Public properties must be marked with " + typeof(T).Name + " or IgnoreAttribute. " + myType.Name + "." + prop.Name);
             }
             return p;
         }
