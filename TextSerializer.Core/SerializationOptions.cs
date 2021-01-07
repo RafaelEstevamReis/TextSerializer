@@ -2,5 +2,6 @@
 {
     public class SerializationOptions
     {
+        public string DateTimeFormat { get; set; }
     }
 }
