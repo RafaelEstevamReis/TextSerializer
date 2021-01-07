@@ -6,14 +6,21 @@ namespace TextSerializer
 {
     public class BlockSerializer
     {
+        public BlockSerializer(SerializationOptions options = null)
+        {
+            Options = options ?? new SerializationOptions();
+        }
+
         public event EventHandler<SerializableValue[]> ObjectReadComplete;
 
         public string FieldSeparator { get; set; }
         public bool LastFieldHadSeparator { get; set; }
+        public SerializationOptions Options { get; }
+
 
         public void Serialize<T>(T Object, TextWriter stream) where T : new()
         {
-            var data = ObjectInspector.ReadObject(Object);
+            var data = ObjectInspector.ReadObject(Object, Options);
 
             ObjectReadComplete?.Invoke(this, data);
 
@@ -21,7 +28,7 @@ namespace TextSerializer
             {
                 var val = data[i];
                 string value = val.Formatter.Serialize(val);
-                if (value.Length != val.Length) throw new InvalidOperationException("Serialized Length mismatch");
+                if (value.Length != val.Length) throw new InvalidOperationException($"Serialized Length mismatch on {val.Name}. Expected {val.Length} but '{value}' has {value.Length}");
                 stream.Write(value);
 
                 bool checkSeparator = !string.IsNullOrEmpty(FieldSeparator);
@@ -39,7 +46,7 @@ namespace TextSerializer
         {
             T Object = new T();
             Results = new SerializationResult();
-            var data = ObjectInspector.ReadObject<T>(Object);
+            var data = ObjectInspector.ReadObject<T>(Object, Options);
             
             ObjectReadComplete?.Invoke(this, data);
 

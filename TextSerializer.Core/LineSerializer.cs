@@ -5,11 +5,17 @@ namespace TextSerializer
 {
     public class LineSerializer
     {
+        public SerializationOptions Options { get; }
+
         public event EventHandler<SerializableValue[]> ObjectReadComplete;
+        public LineSerializer(SerializationOptions options = null)
+        {
+            Options = options ?? new SerializationOptions();
+        }
 
         public void Serialize<T>(T Object, StreamWriter stream) where T : new()
         {
-            BlockSerializer bs = new BlockSerializer();
+            BlockSerializer bs = new BlockSerializer(Options);
             if (ObjectReadComplete != null)
             {
                 bs.ObjectReadComplete += ObjectReadComplete;
@@ -25,7 +31,7 @@ namespace TextSerializer
         }
         public T Deserialize<T>(string line, out SerializationResult Results) where T : new()
         {
-            var bs = new BlockSerializer();
+            var bs = new BlockSerializer(Options);
             
             if (ObjectReadComplete != null)
             {

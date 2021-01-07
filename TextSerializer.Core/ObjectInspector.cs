@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using TextSerializer.Attributes;
 
 namespace TextSerializer
 {
     public class ObjectInspector
     {
-        public static SerializableValue[] ReadObject<T>(T Object) where T : new()
+        public static SerializableValue[] ReadObject<T>(T Object, SerializationOptions options) where T : new()
         {
             var myType = Object.GetType();
             IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
@@ -33,6 +32,9 @@ namespace TextSerializer
                 object propVal = prop.GetValue(Object);
                 var formatter = Formatters.Formatter.GetNativeFormatter(typeProp, prop.PropertyType);
                 if (formatter == null) throw new InvalidOperationException("None Formatter matched " + myType.Name + "." + prop.Name + ", Index:" + indexProp.Index);
+
+                formatter.Options = options;
+
                 dicProps.Add(indexProp.Index, new SerializableValue()
                 {
                     Name = prop.Name,
