@@ -1,8 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <RootNamespace>TextSerializer</RootNamespace>
+    <PackageId>RafaelEstevam.TextSerializer</PackageId>
+    <Authors>RafaelEstevam.net</Authors>
+    <Company>RafaelEstevam.net</Company>
+    <Product>TextSerializer</Product>
+    <Description>A small library to serialize and deserialize text-based fixed length files</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/RafaelEstevamReis/TextSerializer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RafaelEstevamReis/TextSerializer</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Paired with 
+https://github.com/RafaelEstevamReis/TextSerializer</PackageReleaseNotes>
+    <Version>0.4.6</Version>
   </PropertyGroup>
 
 </Project>

@@ -6,12 +6,16 @@ namespace TextSerializer
 {
     public class BlockSerializer
     {
+        public event EventHandler<SerializableValue[]> ObjectReadComplete;
+
         public string FieldSeparator { get; set; }
-        public bool LastFieldHasSeparator { get; set; }
+        public bool LastFieldHadSeparator { get; set; }
 
         public void Serialize<T>(T Object, TextWriter stream) where T : new()
         {
             var data = ObjectInspector.ReadObject(Object);
+
+            ObjectReadComplete?.Invoke(this, data);
 
             for (int i = 0; i < data.Length; i++)
             {
@@ -21,7 +25,7 @@ namespace TextSerializer
                 stream.Write(value);
 
                 bool checkSeparator = !string.IsNullOrEmpty(FieldSeparator);
-                if (!LastFieldHasSeparator && i == data.Length - 1) checkSeparator = false;
+                if (!LastFieldHadSeparator && i == data.Length - 1) checkSeparator = false;
 
                 if (checkSeparator)
                 {
@@ -36,6 +40,8 @@ namespace TextSerializer
             T Object = new T();
             Results = new SerializationResult();
             var data = ObjectInspector.ReadObject<T>(Object);
+            
+            ObjectReadComplete?.Invoke(this, data);
 
             int maxFieldLen = data.Max(o => o.Length);
             if (FieldSeparator != null) maxFieldLen = Math.Max(maxFieldLen, FieldSeparator.Length);
@@ -47,11 +53,11 @@ namespace TextSerializer
                 try
                 {
                     int len = stream.ReadBlock(buffer, 0, val.Length);
-                    var block = new String(buffer, 0, len);
+                    var block = new string(buffer, 0, len);
 
                     if (val.Formatter.Deserialize(block, val))
                     {
-                        Object.GetType().GetProperty(val.Name).SetValue(Object, val.Object);
+                        typeof(T).GetProperty(val.Name).SetValue(Object, val.Object);
                     }
                     else
                     {
@@ -59,7 +65,7 @@ namespace TextSerializer
                     }
 
                     bool checkSeparator = !string.IsNullOrEmpty(FieldSeparator);
-                    if (!LastFieldHasSeparator && i == data.Length - 1) checkSeparator = false;
+                    if (!LastFieldHadSeparator && i == data.Length - 1) checkSeparator = false;
 
                     if (checkSeparator)
                     {
