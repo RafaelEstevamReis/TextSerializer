@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TextSerializer.Core</name>
+    </assembly>
+    <members>
+        <member name="T:TextSerializer.Attributes.RegistrySizeAttribute">
+            <summary>
+            Optional Attribute. Allows class-wide length check
+            </summary>
+        </member>
+        <member name="F:TextSerializer.DataType.N">
+            <summary>
+            Numeric, shoud be left-padded with zeros
+            </summary>
+        </member>
+        <member name="F:TextSerializer.DataType.C">
+            <summary>
+            Textual, should be right-padded with spaces
+            </summary>
+        </member>
+        <member name="F:TextSerializer.DataType.Skip">
+            <summary>
+            Skip this property
+            </summary>
+        </member>
+    </members>
+</doc>
