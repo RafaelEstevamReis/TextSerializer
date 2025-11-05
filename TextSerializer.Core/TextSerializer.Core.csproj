@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8;netcoreapp3.1;netstandard2.0;net45</TargetFrameworks>
+		<LangVersion>12</LangVersion>
 		<RootNamespace>TextSerializer</RootNamespace>
 		<PackageId>RafaelEstevam.TextSerializer</PackageId>
 		<Authors>RafaelEstevam.net</Authors>
@@ -16,6 +17,16 @@
 			https://github.com/RafaelEstevamReis/TextSerializer
 		</PackageReleaseNotes>
 		<Version>0.4.8</Version>
-	</PropertyGroup>
 
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>../TextSerializer.Core.xml</DocumentationFile>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
