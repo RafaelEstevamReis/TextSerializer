@@ -49,4 +49,16 @@ public class LineSerializer
 
         return bs.Deserialize<T>(new StringReader(line), out Results);
     }
+
+    public static void Serialize<T>(T Object, StreamWriter stream, SerializationOptions options = null) where T : new()
+    {
+        var ser = new LineSerializer(options);
+        ser.Serialize(Object, stream);
+    }
+    public static T Deserialize<T>(StreamReader stream, SerializationOptions options = null) where T : new()
+    {
+        var ser = new LineSerializer(options);
+        return ser.Deserialize<T>(stream, out _);
+    }
+
 }
