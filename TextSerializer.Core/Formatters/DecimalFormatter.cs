@@ -1,30 +1,29 @@
-﻿using System;
+﻿namespace TextSerializer.Formatters;
 
-namespace TextSerializer.Formatters
+using System;
+
+public class DecimalFormatter : Formatter
 {
-    public class DecimalFormatter : Formatter
+    override public string Serialize(SerializableValue Value)
     {
-        override public string Serialize(SerializableValue Value)
-        {
-            var dVal = Convert.ToDecimal(Value.Object);
+        var dVal = Convert.ToDecimal(Value.Object);
 
-            int inteiros = Value.Length - Value.Decimals;
-            if (dVal < 0) inteiros--;
-            string mascara = new string('0', inteiros) + "." + new string('0', Value.Decimals);
+        int inteiros = Value.Length - Value.Decimals;
+        if (dVal < 0) inteiros--;
+        string mascara = new string('0', inteiros) + "." + new string('0', Value.Decimals);
 
-            var sVal = dVal.ToString(mascara, System.Globalization.CultureInfo.InvariantCulture).Replace(".", "");
-            if (sVal.Length > Value.Length) throw new InvalidOperationException();
+        var sVal = dVal.ToString(mascara, System.Globalization.CultureInfo.InvariantCulture).Replace(".", "");
+        if (sVal.Length > Value.Length) throw new InvalidOperationException();
 
-            return sVal;
-        }
-        override public bool Deserialize(string Block, SerializableValue Value)
-        {
-            decimal dVal = Convert.ToDecimal(Block);
+        return sVal;
+    }
+    override public bool Deserialize(string Block, SerializableValue Value)
+    {
+        decimal dVal = Convert.ToDecimal(Block);
 
-            int Div = (int)Math.Pow(10, Value.Decimals);
-            Value.Object = dVal / Div;
+        int Div = (int)Math.Pow(10, Value.Decimals);
+        Value.Object = dVal / Div;
 
-            return true;
-        }
+        return true;
     }
 }

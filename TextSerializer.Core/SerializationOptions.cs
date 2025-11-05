@@ -1,7 +1,6 @@
-﻿namespace TextSerializer
+﻿namespace TextSerializer;
+
+public class SerializationOptions
 {
-    public class SerializationOptions
-    {
-        public string DateTimeFormat { get; set; }
-    }
+    public string DateTimeFormat { get; set; }
 }

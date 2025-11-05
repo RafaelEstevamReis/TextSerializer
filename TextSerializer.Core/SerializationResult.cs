@@ -1,10 +1,9 @@
-﻿using System;
+﻿namespace TextSerializer;
+
+using System;
 using System.Collections.Generic;
 
-namespace TextSerializer
+public class SerializationResult
 {
-    public class SerializationResult
-    {
-        public List<Exception> Errors { get; private set; } = [];
-    }
+    public List<Exception> Errors { get; private set; } = [];
 }
