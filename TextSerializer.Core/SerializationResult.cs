@@ -5,11 +5,6 @@ namespace TextSerializer
 {
     public class SerializationResult
     {
-        public SerializationResult()
-        {
-            Errors = new List<Exception>();
-        }
-
-        public List<Exception> Errors { get; private set; }
+        public List<Exception> Errors { get; private set; } = [];
     }
 }

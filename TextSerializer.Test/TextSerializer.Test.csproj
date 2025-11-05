@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TextSerializer.Core\TextSerializer.Core.csproj" />
+	  <ProjectReference Include="..\TextSerializer.Core\TextSerializer.Core.csproj" />
 	</ItemGroup>
 
 </Project>

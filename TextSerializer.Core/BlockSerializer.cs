@@ -17,7 +17,6 @@ namespace TextSerializer
         public bool LastFieldHadSeparator { get; set; }
         public SerializationOptions Options { get; }
 
-
         public void Serialize<T>(T Object, TextWriter stream) where T : new()
         {
             int totalWritten = 0;
@@ -60,14 +59,14 @@ namespace TextSerializer
             T Object = new T();
             Results = new SerializationResult();
             var data = ObjectInspector.ReadObject<T>(Object, Options);
-            
+
             ObjectReadComplete?.Invoke(this, data);
 
             int maxFieldLen = data.Max(o => o.Length);
             if (FieldSeparator != null) maxFieldLen = Math.Max(maxFieldLen, FieldSeparator.Length);
             char[] buffer = new char[maxFieldLen];
 
-            for(int i = 0; i < data.Length;i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 var val = data[i];
                 try

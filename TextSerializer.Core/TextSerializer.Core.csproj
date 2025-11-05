@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net8;netcoreapp3.1;netstandard2.0;net45</TargetFrameworks>
-		<LangVersion>12</LangVersion>
 		<RootNamespace>TextSerializer</RootNamespace>
+		<LangVersion>12</LangVersion>
 		<PackageId>RafaelEstevam.TextSerializer</PackageId>
 		<Authors>RafaelEstevam.net</Authors>
 		<Company>RafaelEstevam.net</Company>

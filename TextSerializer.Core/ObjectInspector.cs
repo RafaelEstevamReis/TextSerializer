@@ -11,8 +11,8 @@ namespace TextSerializer
         public static SerializableValue[] ReadObject<T>(T Object, SerializationOptions options) where T : new()
         {
             var myType = Object.GetType();
-            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
-            var dicProps = new Dictionary<int, SerializableValue>();
+            IList<PropertyInfo> props = [.. myType.GetProperties()];
+            Dictionary<int, SerializableValue> dicProps = [];
 
             foreach (var prop in props)
             {
