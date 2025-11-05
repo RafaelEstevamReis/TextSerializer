@@ -89,7 +89,7 @@ public class BlockSerializer
                 if (checkSeparator)
                 {
                     stream.ReadBlock(buffer, 0, FieldSeparator.Length);
-                    block = new String(buffer, 0, FieldSeparator.Length);
+                    block = new string(buffer, 0, FieldSeparator.Length);
 
                     if (block != FieldSeparator)
                     {
