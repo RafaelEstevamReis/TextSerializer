@@ -1,20 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netstandard2.0;net45</TargetFrameworks>
-    <RootNamespace>TextSerializer</RootNamespace>
-    <PackageId>RafaelEstevam.TextSerializer</PackageId>
-    <Authors>RafaelEstevam.net</Authors>
-    <Company>RafaelEstevam.net</Company>
-    <Product>TextSerializer</Product>
-    <Description>A small library to serialize and deserialize text-based fixed length files</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/RafaelEstevamReis/TextSerializer</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/RafaelEstevamReis/TextSerializer</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Paired with b55ca1b
-https://github.com/RafaelEstevamReis/TextSerializer</PackageReleaseNotes>
-    <Version>0.4.8</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net8;netcoreapp3.1;netstandard2.0;net45</TargetFrameworks>
+		<RootNamespace>TextSerializer</RootNamespace>
+		<PackageId>RafaelEstevam.TextSerializer</PackageId>
+		<Authors>RafaelEstevam.net</Authors>
+		<Company>RafaelEstevam.net</Company>
+		<Product>TextSerializer</Product>
+		<Description>A small library to serialize and deserialize text-based fixed length files</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/RafaelEstevamReis/TextSerializer</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/RafaelEstevamReis/TextSerializer</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageReleaseNotes>
+			https://github.com/RafaelEstevamReis/TextSerializer
+		</PackageReleaseNotes>
+		<Version>0.4.8</Version>
+	</PropertyGroup>
 
 </Project>
