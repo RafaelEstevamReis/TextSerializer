@@ -4,6 +4,17 @@
         <name>TextSerializer.Core</name>
     </assembly>
     <members>
+        <member name="F:TextSerializer.Attributes.LengthAttribute.CountMode.DecimalsInclusive">
+            <summary>
+            Decimal places are already counted in the Length
+            </summary>
+        </member>
+        <member name="F:TextSerializer.Attributes.LengthAttribute.CountMode.DecimalsExclusive">
+            <summary>
+            Decimal places are not counted in the Length
+            Length will be increased to account for it
+            </summary>
+        </member>
         <member name="T:TextSerializer.Attributes.RegistrySizeAttribute">
             <summary>
             Optional Attribute. Allows class-wide length check
